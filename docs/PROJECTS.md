@@ -45,7 +45,7 @@ Use these organization-wide fields for the release train and Rust program:
 - **Blocked by:** issue, credential class, capacity lane, or repository prerequisite.
 - **Evidence:** exact head SHA, workflow run, artifact digest, and merge commit.
 
-The current integration cannot mutate Projects v2. Keep issues #1 and #2 plus linked implementation issues current so a Projects-capable GitHub App or authenticated `gh project` runner can add and update the board without reconstructing state from chat history.
+Projects v2 write access is now available through the reviewed, rate-aware GitHub CLI/GraphQL reconciler. Keep issues #1 and #2 plus linked implementation issues current as stable board inputs. A Project mutation is claimed only when the fleet evidence records and live-verifies the exact organization, Project, and item; chat history is never the evidence source.
 
 ### Credential and media boundary
 
