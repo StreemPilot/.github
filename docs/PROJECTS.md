@@ -3,10 +3,8 @@
 
 - **GitHub organization:** [StreemPilot](https://github.com/StreemPilot)
 - **Canonical GitHub Project:** [StreemPilot-project](https://github.com/orgs/StreemPilot/projects/1) (project 1)
-- **Canonical Linear project:** [github.com/StreemPilot](https://linear.app/denman/project/githubcomstreempilot-e8b8f6dee124)
+- **Canonical Linear project:** [planning workspace](https://linear.app/denman/project/githubcomstreempilot-e8b8f6dee124)
 - **Organization documentation repository:** [StreemPilot/.github](https://github.com/StreemPilot/.github)
-- **Durable organization routing card:** [StreemPilot/.github#2](https://github.com/StreemPilot/.github/issues/2)
-- **CI-capacity restoration card:** [StreemPilot/.github#1](https://github.com/StreemPilot/.github/issues/1)
 
 ## Source-of-truth boundaries
 
