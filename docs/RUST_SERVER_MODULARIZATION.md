@@ -81,7 +81,7 @@ Suggested fields:
 - Blocked by
 - Evidence
 
-Projects v2 mutations require a Projects-capable App or authenticated GitHub CLI/GraphQL runner with project write permission. Until that exists, the issues and PR above are the stable board-ready inputs; no board mutation is claimed.
+Projects v2 mutations are performed by reviewed, authenticated GitHub CLI/GraphQL automation with Project write permission. The issues and PR above remain stable board inputs. A board mutation is authoritative only when the fleet evidence records and live-verifies the exact Project item; no mutation is inferred from a prompt, issue body, or documentation link alone.
 
 ## Merge and evidence requirements
 
