@@ -1,6 +1,6 @@
 # StreemPilot Rust server modularization and provisioning ledger
 
-This document is the StreemPilot organization view of the cross-organization program tracked by Linear [DEN-1682](https://linear.app/denman/issue/DEN-1682) and [DEN-1757](https://linear.app/denman/issue/DEN-1757).
+This document is the StreemPilot organization view of the cross-organization program tracked by Linear [DEN-1682](https://linear.app/denman/issue/DEN-1682), [DEN-1757](https://linear.app/denman/issue/DEN-1757), and repository-publication reconciliation [DEN-2328](https://linear.app/denman/issue/DEN-2328).
 
 ## Architecture contract
 
@@ -18,70 +18,54 @@ Product policy stays in the product repository. A shared runtime crate is introd
 
 All three services retain product-specific authorization, signaling, route, persistence, and domain policy. Rollback is by reviewed revert; shared history is not rewritten.
 
-## Wave 2 media-router target
+## Wave 2 media-router publication
 
-| Target | Starter responsibility | Repository state |
+| Repository | Responsibility | Verified publication state |
 | --- | --- | --- |
-| `StreemPilot/streempilot-media-router.rs` | Produce a deterministic bounded RTMP/SRT destination fan-out plan. | `provisioning_required` |
+| [`StreemPilot/streempilot-media-router.rs`](https://github.com/StreemPilot/streempilot-media-router.rs) | Produce a deterministic bounded RTMP/SRT destination fan-out plan. | Private repository `1324470250`; `main` `a3b01146f85ee61400b72ed3f333c76b4413a4fa`; exact sealed history verified. |
 
 The starter explicitly does not implement the WebRTC signaling service, SFU, recording, compositing, provider credential storage, raw-media transport, API authority, or generic sync. Stream keys, provider tokens, raw media, SDP, ICE, and private media URLs remain outside route plans, logs, metrics, starter receipts, and issue/Linear evidence.
 
-## Current PR and CI state — August 5, 2026
+## Repository publication result — August 5, 2026
 
-[StreemPilot/streempilot-monorepo#16](https://github.com/StreemPilot/streempilot-monorepo/pull/16) is the canonical current media-router starter PR. It semantically rebases the reviewed generator, tests, archive contract, and fleet documentation onto current `main`, superseding stale drafts #2 and #15.
+Trusted-main GitHub Actions run `31045540736` authenticated as `ORESoftware`, reconstructed the exact 32-repository source fleet—888 tracked files and 30 gitlinks—and verified the combined HypeSiege/StreemPilot publication as 4/4. It preserved three exact HypeSiege repositories and created the StreemPilot media router privately on `main` at reviewed sealed SHA `a3b01146f85ee61400b72ed3f333c76b4413a4fa`.
 
-Exact head:
+Bounded non-secret evidence is merged in [ORESoftware/k8s-cluster#1069](https://github.com/ORESoftware/k8s-cluster/pull/1069) as commit `4e9df62da54479c9f52d850c16703b5e112bb282`. Artifact `8946360080`, `den-2328-encrypted-exact-gaps-31045540736`, has SHA-256 `c87ff38d687d81def5c419297dc28445d6cf659ef1d262c3c02d6b4a18ed99ec`.
+
+The final exact result is:
 
 ```text
-850a82afa51b3ee3f9581aa077bcc54aa489ff34
+created=1 preserved_exact=3 verified=4 failures=0
 ```
 
-Current workflow state:
+The immutable fleet ledger records `streempilot/streempilot-media-router.rs`; GitHub returns the canonical organization spelling `StreemPilot`. The reviewed publication repair compares identities case-insensitively, rejects case-insensitive duplicates and cross-owner escapes, invokes the sealed publisher with its immutable source identity, and records GitHub's canonical owner spelling in evidence.
 
-| Workflow | Run | State |
-| --- | --- | --- |
-| `fleet-contract` | `31033881293` | Queued for `[self-hosted, linux, sonus-ci]`. |
-| `modular media-router starter` | `31033880887` | Queued for `[self-hosted, linux, sonus-ci]`. |
+## Repository-local follow-up sequence
 
-Queued is not passing evidence. PR #16 remains draft and must not merge until the exact head executes all contract, offline Cargo, rustfmt, strict Clippy, tests, startup-probe, deterministic archive, and media-boundary steps. Runner restoration is tracked in [StreemPilot/.github#1](https://github.com/StreemPilot/.github/issues/1).
+1. Open a focused follow-up branch and PR; do not rewrite the sealed bootstrap commit.
+2. Add canonical Project/Linear routing and repository-specific media-router operational ownership.
+3. Run offline locked Cargo metadata, rustfmt, strict Clippy, all-target tests, architecture tests, and startup probes already defined by the starter.
+4. Preserve the signaling/media/recording/compositing/provider credential boundaries with tests.
+5. Merge only the exact green reviewed head.
+6. Add or update the exact child commit as a monorepo gitlink in a separate PR.
+7. Update DEN-1757, DEN-2328, this document, issues #1/#2, and the GitHub Project item with exact evidence.
 
-## Repository provisioning sequence
-
-After PR #16 is exact-head green and merged:
-
-1. Verify or create `StreemPilot/streempilot-media-router.rs` with a reviewed repository-admin GitHub App.
-2. Keep the repository private until release policy explicitly changes; enable issues/projects, disable wiki, and initialize `main`.
-3. Download the exact reviewed starter artifact and verify both the GitHub artifact digest and internal checksum file.
-4. Unpack into a repository-specific initialization branch.
-5. Open a draft initialization PR.
-6. Run offline locked Cargo metadata, rustfmt, strict Clippy, all-target tests, architecture tests, and startup probe.
-7. Merge only the exact green reviewed head.
-8. Add the exact child commit as a monorepo gitlink in a separate PR.
-9. Update DEN-1757, this document, issues #1/#2, and the GitHub Project item with exact evidence.
-
-A personal access token is not copied into GitHub or Linear. Repository creation must use a short-lived installation token from a least-privilege GitHub App, with exact target allowlisting, revocation, non-secret evidence, and temporary-key destruction.
+The separately audited historical identity `StreemPilot/streempilot-flutter-app`, which currently redirects to `StreemPilot/sp-web-leptos`, is not part of this four-repository publication and remains a distinct redirect-restoration decision. It must not be silently added to this evidence set.
 
 ## GitHub Project update contract
 
-Add these durable items to [StreemPilot Project 1](https://github.com/orgs/StreemPilot/projects/1):
+Keep these durable inputs linked to [StreemPilot Project 1](https://github.com/orgs/StreemPilot/projects/1):
 
-- `StreemPilot/.github#1` — hosted Actions/ARC capacity and required-check continuity.
-- `StreemPilot/.github#2` — canonical release train and organization routing.
-- `StreemPilot/streempilot-monorepo#16` — reviewed media-router starter.
-- The media-router initialization PR after repository creation.
+- `StreemPilot/.github#1` — hosted Actions/ARC capacity and required-check continuity;
+- `StreemPilot/.github#2` — canonical release train and organization routing;
+- the media-router follow-up PR;
+- DEN-2328 and the merged evidence PR.
 
-Suggested fields:
+Use fields `Workstream`, `Repository`, `Linear ID`, `Status`, `Priority`, `Release gate`, `Blocked by`, and `Evidence`. The current connector does not expose Projects v2 item mutation; the issues, PRs, and this ledger are the stable board-ready inputs for a Projects-capable GitHub App or authenticated `gh project` runner.
 
-- Workstream
-- Repository
-- Linear ID
-- Status
-- Priority
-- Release gate
-- Blocked by
-- Evidence
+## Credential and media boundary
 
-Projects v2 mutations require a Projects-capable App or authenticated GitHub CLI/GraphQL runner with project write permission. Until that exists, the issues and PR above are the stable board-ready inputs; no board mutation is claimed.
+The protected GitHub App path failed before mutation because no repository-admin App ID/private-key pair was present. The successful publication therefore used an exceptional one-time RSA-OAEP handoff bound to one Actions run and issue. Exactly one ciphertext was accepted; the decrypted PAT was immediately masked, held only in a mode-0600 runner-temporary file, and destroyed with the keypair and payload in unconditional cleanup. No plaintext credential, stream key, provider token, raw media, SDP, ICE, or private media URL entered source, workflow configuration, artifacts, issue text, PR text, logs, or Linear. Permanent organization administration should use reviewed least-privilege GitHub App installation tokens. Any PAT pasted into chat must be revoked or rotated.
 
 ## Merge and evidence requirements
 
