@@ -29,7 +29,7 @@ For every desktop-facing feature:
 
 - GitHub Project: [`StreemPilot-project` — Project 1](https://github.com/orgs/StreemPilot/projects/1)
 - Linear project: `github.com/streempilot`
-- Central registry: [`ORESoftware/project-registry`](https://github.com/ORESoftware/project-registry/blob/main/registry/desktop-applications.json)
+- Central registry: [`approved-private-registry`](private-registry://canonical/registry/desktop-applications.json)
 - Portfolio rollout: [`DEN-2469`](https://linear.app/denman/issue/DEN-2469/roll-out-paired-rust-flutter-desktop-repositories-across-the-portfolio)
 
 Repository creation, renames, transfers, archival, or platform-status changes must update this document, the central registry, the Linear project, and both companion repositories in the same delivery.

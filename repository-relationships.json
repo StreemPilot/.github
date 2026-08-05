@@ -29,7 +29,7 @@
     "contains_non_public_inventory": true,
     "digest": "sha256:0f238d3d733b1c458e80db24deceb7cd549de1e1ed84aa9c55e680708f47399e",
     "path": "owners/StreemPilot.json",
-    "repository": "ORESoftware/project-registry"
+    "repository": "approved-private-registry"
   },
   "relationships": [],
   "repositories": [
