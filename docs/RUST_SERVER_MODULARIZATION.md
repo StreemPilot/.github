@@ -66,6 +66,7 @@ Use fields `Workstream`, `Repository`, `Linear ID`, `Status`, `Priority`, `Relea
 ## Credential and media boundary
 
 The protected GitHub App path failed before mutation because no repository-admin App ID/private-key pair was present. The successful publication therefore used an exceptional one-time RSA-OAEP handoff bound to one Actions run and issue. Exactly one ciphertext was accepted; the decrypted PAT was immediately masked, held only in a mode-0600 runner-temporary file, and destroyed with the keypair and payload in unconditional cleanup. No plaintext credential, stream key, provider token, raw media, SDP, ICE, or private media URL entered source, workflow configuration, artifacts, issue text, PR text, logs, or Linear. Permanent organization administration should use reviewed least-privilege GitHub App installation tokens. Any PAT pasted into chat must be revoked or rotated.
+Projects v2 mutations are performed by reviewed, authenticated GitHub CLI/GraphQL automation with Project write permission. The issues and PR above remain stable board inputs. A board mutation is authoritative only when the fleet evidence records and live-verifies the exact Project item; no mutation is inferred from a prompt, issue body, or documentation link alone.
 
 ## Merge and evidence requirements
 
