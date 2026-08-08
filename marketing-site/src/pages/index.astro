@@ -1,0 +1,179 @@
+---
+const features = [
+  ["Broadcast lifecycle", "Create, inspect, update, start, stop, and observe a broadcast through one versioned contract."],
+  ["Signaling sessions", "Model WebRTC signaling, offers, answers, ICE candidates, expiry, and session state as explicit resources."],
+  ["Multistream preflight", "Validate destinations, credentials, ingest settings, and readiness before a producer goes live."],
+  ["Canonical OpenAPI", "TypeScript, Dart, and Rust packages are generated and reviewed against the same schema instead of drifting independently."],
+  ["Thin client behavior", "SDKs transport typed requests and failures without hiding broadcast policy, retry loops, or operator decisions."],
+  ["Honest readiness", "The current server-facing TypeScript surface remains simulated until live APIs land; the site preserves that distinction."],
+];
+
+const samples = [
+  {
+    id: "typescript",
+    label: "TypeScript",
+    file: "broadcast.ts",
+    code: `import { StreemPilotClient } from "@streempilot/client";
+
+const client = new StreemPilotClient({
+  baseUrl: "https://api.streempilot.example",
+  accessToken,
+});
+
+const broadcast = await client.broadcasts.create({
+  title: "Weekly product studio",
+  destinations: [youtube, linkedin],
+});
+
+const preflight = await client.broadcasts.preflight(broadcast.id);
+console.log(preflight.ready, preflight.checks);`,
+    note: "Representative TypeScript use of the current client contract. The repository currently simulates server responses until the live API is implemented.",
+  },
+  {
+    id: "dart",
+    label: "Dart / Flutter",
+    file: "broadcast.dart",
+    code: `final client = StreemPilotClient(
+  baseUrl: 'https://api.streempilot.example',
+  accessToken: accessToken,
+);
+
+final broadcast = await client.broadcasts.create(
+  title: 'Weekly product studio',
+  destinations: [youtube, linkedin],
+);
+
+final preflight = await client.broadcasts.preflight(broadcast.id);
+print('${preflight.ready}: ${preflight.checks.length} checks');`,
+    note: "The Dart package carries the same broadcast and preflight resources into Flutter applications.",
+  },
+  {
+    id: "rust",
+    label: "Rust",
+    file: "broadcast.rs",
+    code: `let client = StreemPilotClient::new(
+    "https://api.streempilot.example",
+    access_token,
+)?;
+
+let broadcast = client
+    .broadcasts()
+    .create("Weekly product studio", destinations)
+    .await?;
+
+let preflight = client.broadcasts().preflight(&broadcast.id).await?;
+println!("ready={} checks={}", preflight.ready, preflight.checks.len());`,
+    note: "The Rust package follows the same canonical wire schema and keeps orchestration policy outside the transport layer.",
+  },
+  {
+    id: "signaling",
+    label: "Signaling JSON",
+    file: "ice-candidate.json",
+    code: `{
+  "sessionId": "signal_01J...",
+  "participantId": "producer_01J...",
+  "kind": "ice-candidate",
+  "candidate": {
+    "candidate": "candidate:842163049 1 udp 1677734910 ...",
+    "sdpMid": "0",
+    "sdpMLineIndex": 0
+  },
+  "expiresAt": "2026-08-05T22:45:00Z"
+}`,
+    note: "Signaling remains an explicit, expiring session resource rather than an opaque side channel.",
+  },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Broadcast orchestration, WebRTC signaling, and multistream preflight through one polyglot contract." />
+  <meta name="theme-color" content="#100924" />
+  <title>StreemPilot — broadcast with a flight plan</title>
+</head>
+<body>
+  <header>
+    <a class="brand" href="/"><b>SP</b><span>StreemPilot</span></a>
+    <nav><a href="#platform">Platform</a><a href="#clients">Clients</a><a href="https://github.com/StreemPilot">GitHub ↗</a></nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Broadcast control plane · Polyglot contract</p>
+        <h1>Broadcast once. <em>Reach every destination.</em></h1>
+        <p class="lede">StreemPilot brings broadcast state, WebRTC signaling, destination readiness, and multistream preflight into one inspectable contract for browser, Flutter, and Rust applications.</p>
+        <div class="actions"><a class="primary" href="https://github.com/StreemPilot/streempilot-clients">Explore the clients ↗</a><a href="#clients">Choose a language</a></div>
+        <ul><li>TypeScript · Dart · Rust</li><li>Broadcast preflight</li><li>Canonical OpenAPI</li></ul>
+      </div>
+      <div class="visual" aria-label="A multistream broadcast routing map">
+        <span class="grid"></span>
+        <div class="core"><small>BROADCAST</small><strong>preflight ready</strong><i>3 destinations · 6 checks</i></div>
+        <div class="source"><small>STUDIO</small><b>1080p · 60fps</b></div>
+        <div class="dest d1"><small>DESTINATION</small><b>YouTube</b><i>ready</i></div>
+        <div class="dest d2"><small>DESTINATION</small><b>LinkedIn</b><i>ready</i></div>
+        <div class="dest d3"><small>DESTINATION</small><b>Custom RTMP</b><i>ready</i></div>
+        <svg viewBox="0 0 500 420" aria-hidden="true"><path d="M100 210L250 210M250 210L407 92M250 210L420 210M250 210L407 330" /></svg>
+      </div>
+    </section>
+
+    <section class="status"><strong>Implementation status</strong><p>The OpenAPI schema and TypeScript, Dart, and Rust client packages are real. The current server-facing TypeScript behavior is simulated until the live broadcast APIs are implemented.</p></section>
+
+    <section class="metrics"><div><b>3</b><span>client languages</span></div><div><b>1</b><span>canonical wire schema</span></div><div><b>3</b><span>control domains</span></div><div><b>0</b><span>hidden readiness claims</span></div></section>
+
+    <section id="platform" class="platform">
+      <p class="eyebrow">A flight plan for going live</p>
+      <h2>Separate production intent from transport turbulence.</h2>
+      <p class="intro">Broadcast resources, destination configuration, signaling sessions, ICE exchange, and readiness checks stay independently visible. A producer can understand why a stream is ready—or why it is not—before the audience sees a failure.</p>
+      <div class="features">{features.map(([title, body], index) => <article><small>{String(index + 1).padStart(2, "0")}</small><h3>{title}</h3><p>{body}</p></article>)}</div>
+    </section>
+
+    <section id="clients" class="sdk" data-sdk>
+      <div>
+        <p class="eyebrow">Official client workbench</p>
+        <h2>One broadcast contract across web, Flutter, and native services.</h2>
+        <p class="intro">The examples reflect the broadcast, preflight, and signaling concepts in `streempilot-clients`. Until live APIs land, they should be read as client-contract examples rather than proof of an operating production service.</p>
+        <a class="source-link" href="https://github.com/StreemPilot/streempilot-clients">Browse streempilot-clients ↗</a>
+      </div>
+      <div class="workbench">
+        <div class="toolbar">
+          <label><span>Language</span><select aria-label="Select client language" data-language>{samples.map((sample, index) => <option value={sample.id} selected={index === 0}>{sample.label}</option>)}</select></label>
+          <code data-file>{samples[0]?.file ?? "broadcast.ts"}</code>
+          <button type="button" data-copy>Copy</button>
+        </div>
+        {samples.map((sample, index) => <article data-sample={sample.id} data-name={sample.file} hidden={index !== 0}><pre tabindex="0"><code>{sample.code}</code></pre><p>{sample.note}</p></article>)}
+      </div>
+    </section>
+
+    <section class="closing"><p class="eyebrow">Prepare the show before the red light</p><h2>Give every destination the same deliberate preflight.</h2><a href="https://github.com/StreemPilot">Open the organization ↗</a></section>
+  </main>
+  <footer><span>© 2026 StreemPilot</span><a href="https://github.com/StreemPilot/streempilot-clients">Client packages</a></footer>
+
+  <script is:inline>
+    document.querySelectorAll('[data-sdk]').forEach((root) => {
+      const select = root.querySelector('[data-language]');
+      const file = root.querySelector('[data-file]');
+      const copy = root.querySelector('[data-copy]');
+      const panels = [...root.querySelectorAll('[data-sample]')];
+      const show = (id) => panels.forEach((panel) => {
+        const active = panel.dataset.sample === id;
+        panel.hidden = !active;
+        if (active) file.textContent = panel.dataset.name || '';
+      });
+      select?.addEventListener('change', (event) => show(event.target.value));
+      copy?.addEventListener('click', async () => {
+        const active = panels.find((panel) => !panel.hidden);
+        const text = active?.querySelector('code')?.textContent || '';
+        try { await navigator.clipboard.writeText(text); copy.textContent = 'Copied'; }
+        catch { active?.querySelector('pre')?.focus(); copy.textContent = 'Select code'; }
+        setTimeout(() => copy.textContent = 'Copy', 1200);
+      });
+    });
+  </script>
+
+  <style>
+    :root{--accent:#7c3aed;--hot:#ec4899;--ink:#100924;--muted:#6d647d;--paper:#fbf7ff}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#f5f3ff,var(--paper) 36rem);color:var(--ink);font:16px/1.6 Inter,ui-sans-serif,system-ui,sans-serif}a{color:inherit}header,main,footer{width:min(1180px,calc(100% - 2rem));margin:auto}header{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 0}.brand{display:flex;align-items:center;gap:.6rem;font-weight:900;text-decoration:none}.brand b{display:grid;width:2.35rem;aspect-ratio:1;place-items:center;border-radius:.75rem;background:var(--ink);color:white;font-size:.7rem}nav{display:flex;gap:1.2rem;font-size:.85rem;font-weight:800}nav a{text-decoration:none}.hero{display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(2rem,7vw,7rem);align-items:center;min-height:720px;padding:5rem 0}.eyebrow{margin:0;color:var(--accent);font:800 .7rem/1 ui-monospace,monospace;letter-spacing:.17em;text-transform:uppercase}h1{max-width:12ch;margin:.8rem 0 1.25rem;font-size:clamp(3.5rem,8vw,7rem);line-height:.86;letter-spacing:-.075em}h1 em{background:linear-gradient(120deg,var(--accent),var(--hot));background-clip:text;color:transparent;font-style:normal}.lede,.intro{max-width:48rem;color:var(--muted);font-size:1.08rem}.actions{display:flex;gap:.7rem;flex-wrap:wrap;margin:2rem 0}.actions a,.closing a{padding:.75rem 1rem;border:1px solid #0f172a1b;border-radius:.75rem;font-weight:850;text-decoration:none}.primary{background:var(--ink);color:white}.hero ul{display:flex;gap:1rem;flex-wrap:wrap;margin:0;padding:0;color:var(--muted);font-size:.8rem;list-style:none}.hero li:before{content:'◆';margin-right:.4rem;color:var(--accent)}.visual{position:relative;min-height:32rem;overflow:hidden;border-radius:2rem;background:radial-gradient(circle at 49% 50%,#7c3aed4c,transparent 40%),linear-gradient(145deg,#0c0718,#291647);box-shadow:0 35px 90px #4c1d9540}.grid{position:absolute;inset:0;background-image:linear-gradient(#ffffff0c 1px,transparent 1px),linear-gradient(90deg,#ffffff0c 1px,transparent 1px);background-size:2.4rem 2.4rem}.visual svg{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:#c084fc8c;stroke-width:2}.core,.source,.dest{position:absolute;z-index:2;display:grid;padding:.9rem;border:1px solid #ffffff25;border-radius:1rem;background:#1b0d30df;color:#d8b4fe;backdrop-filter:blur(12px);font:700 .64rem/1.5 ui-monospace,monospace}.core{top:50%;left:50%;width:14rem;padding:1.2rem;transform:translate(-50%,-50%)}.core strong,.source b,.dest b{color:white}.core strong{font-size:1.25rem}.core i,.dest i{font-style:normal}.source{top:42%;left:5%}.d1{top:8%;right:6%}.d2{top:43%;right:3%}.d3{right:6%;bottom:8%}.status{display:grid;grid-template-columns:.3fr 1fr;gap:1rem 2rem;margin-bottom:1.25rem;padding:1rem 1.2rem;border:1px solid #a21caf28;border-radius:1rem;background:#fff7ed}.status strong{color:#9a3412}.status p{margin:0;color:#7c2d12;font-size:.9rem}.metrics{display:grid;grid-template-columns:repeat(4,1fr);overflow:hidden;border:1px solid #4c1d9518;border-radius:1.15rem;background:#ffffffc9}.metrics div{display:grid;padding:1.2rem}.metrics div+div{border-left:1px solid #4c1d9518}.metrics b{font-size:1.3rem}.metrics span{color:var(--muted);font-size:.76rem}.platform{padding:8rem 0}.platform h2,.sdk h2,.closing h2{max-width:15ch;margin:.55rem 0 1rem;font-size:clamp(2.6rem,6vw,5rem);line-height:.94;letter-spacing:-.06em}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem}.features article{min-height:14rem;padding:1.3rem;border:1px solid #4c1d9514;border-radius:1.1rem;background:#ffffffc5}.features small{color:var(--accent);font:800 .68rem/1 ui-monospace,monospace}.features h3{margin:2.1rem 0 .55rem}.features p{color:var(--muted)}.sdk{display:grid;grid-template-columns:minmax(0,.78fr) minmax(31rem,1.22fr);gap:clamp(2rem,7vw,6rem);align-items:center;margin:3rem 0 9rem}.source-link{display:inline-block;margin-top:1rem;color:var(--accent);font-weight:850;text-decoration:none}.workbench{overflow:hidden;border:1px solid #ffffff24;border-radius:1.25rem;background:#0c0718;color:#f3e8ff;box-shadow:0 32px 90px #4c1d9540}.toolbar{display:flex;gap:.8rem;align-items:end;padding:.85rem 1rem;border-bottom:1px solid #ffffff18;background:#1a0d2d}.toolbar label{display:grid;gap:.25rem}.toolbar label span{color:#d8b4fe;font:700 .6rem/1 ui-monospace,monospace;letter-spacing:.13em;text-transform:uppercase}.toolbar select,.toolbar button{border:1px solid #ffffff28;border-radius:.58rem;background:#2a1647;color:white;padding:.5rem .65rem;font:inherit}.toolbar button{margin-left:auto;cursor:pointer}.toolbar>code{align-self:center;color:#d8b4fe;font-size:.75rem}.workbench pre{overflow:auto;min-height:23rem;max-height:31rem;margin:0;padding:1.2rem;font:500 .82rem/1.7 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre}.workbench article>p{margin:0;padding:.8rem 1.2rem 1rem;border-top:1px solid #ffffff15;color:#d8b4fe;font-size:.78rem}.closing{margin-bottom:2rem;padding:clamp(2rem,7vw,6rem);border-radius:1.8rem;background:linear-gradient(125deg,var(--accent),var(--hot));color:white}.closing .eyebrow{color:#ffffffc7}.closing a{display:inline-block;margin-top:1rem;background:white;color:var(--ink)}footer{display:flex;gap:1rem;padding:1.5rem 0 3rem;color:var(--muted);font-size:.78rem}footer span{margin-right:auto}footer a{text-decoration:none}@media(max-width:900px){.hero,.sdk{grid-template-columns:1fr}.features{grid-template-columns:1fr 1fr}}@media(max-width:650px){nav a:not(:last-child){display:none}.visual{min-height:27rem}.status{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}.features{grid-template-columns:1fr}.toolbar{align-items:stretch;flex-wrap:wrap}.toolbar>code{width:100%;order:3}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</body>
+</html>
