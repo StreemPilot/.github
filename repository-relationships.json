@@ -1,10 +1,56 @@
 {
+  "$schema": "./repository-relationships.schema.json",
+  "audience": "public",
+  "generated": {
+    "complete_for_visibility": "public",
+    "generated_at": "2026-08-05T21:07:32Z",
+    "generator_version": "2026-08-04.1",
+    "inventory_digest": "sha256:1814e11311d892a4e2c6e223c95e5f8aeb545ed578c9b3f22986349f09b82295",
+    "managed_by": "ore-repository-relationship-rollout",
+    "omitted_repository_count": 15,
+    "private_repositories_omitted": true,
+    "source": "GitHub GraphQL repository inventory plus reviewed manual declarations"
+  },
+  "owner": {
+    "account_type": "organization",
+    "dotgithub_repository": "StreemPilot/.github",
+    "github_id": "311150932",
+    "linear_project": {
+      "id": "3f5bd157-4424-42cc-94d0-0bed993cdc1d",
+      "name": "github.com/streempilot",
+      "team_id": "eb8ab169-5afe-4b6f-9cab-3f2aa3e887dc",
+      "url": "https://linear.app/denman/project/githubcomstreempilot-e8b8f6dee124",
+      "workspace": "denman"
+    },
+    "login": "StreemPilot",
+    "mapping_id": "context:streempilot"
+  },
+  "private_registry": {
+    "contains_non_public_inventory": true,
+    "digest": "sha256:0f238d3d733b1c458e80db24deceb7cd549de1e1ed84aa9c55e680708f47399e",
+    "path": "owners/StreemPilot.json",
+    "repository": "approved-private-registry"
+  },
+  "relationships": [],
+  "repositories": [
+    {
+      "archived": false,
+      "default_branch": "main",
+      "fork": false,
+      "full_name": "StreemPilot/.github",
+      "github_id": "1324048690",
+      "name": ".github",
+      "owner": "StreemPilot",
+      "roles": [
+        "community-health",
+        "governance",
+        "relationship-registry"
+      ],
+      "source": "github-graphql-api",
+      "url": "https://github.com/StreemPilot/.github",
+      "visibility": "public"
+    }
+  ],
   "schema_version": 1,
-  "organization": "StreemPilot",
-  "generated_at": null,
-  "repositories": [],
-  "notes": [
-    "Populate from live GitHub inventory; do not infer unverified dependencies.",
-    "Repository-local manifests remain authoritative for exact dependency versions."
-  ]
+  "unresolved_hints": []
 }
