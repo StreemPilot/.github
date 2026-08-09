@@ -71,7 +71,7 @@ Shared signaling/media contracts, schemas, clients, route fixtures, simulated de
 
 Both repositories must begin as buildable scaffolds, not placeholders. The Rust repo must include `docs/DESKTOP_TOOLKIT.md`, reciprocal README/AGENTS/PR guidance, native CI/package/signing skeletons, simulated capture smoke tests, permission tests, and shared contract fixtures.
 
-Central toolkit assignments: [`rust-desktop-strategies.md`](https://github.com/ORESoftware/project-registry/blob/main/docs/rust-desktop-strategies.md).
+Central toolkit assignments: [`rust-desktop-strategies.md`](private-registry://canonical/registry/rust-desktop-strategies.md).
 
 ## Project routing
 
