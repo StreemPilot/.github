@@ -61,7 +61,7 @@ Keep these durable inputs linked to [StreemPilot Project 1](https://github.com/o
 - the media-router follow-up PR;
 - DEN-2328 and the merged evidence PR.
 
-Use fields `Workstream`, `Repository`, `Linear ID`, `Status`, `Priority`, `Release gate`, `Blocked by`, and `Evidence`. The current connector does not expose Projects v2 item mutation; the issues, PRs, and this ledger are the stable board-ready inputs for a Projects-capable GitHub App or authenticated `gh project` runner.
+Use fields `Workstream`, `Repository`, `Linear ID`, `Status`, `Priority`, `Release gate`, `Blocked by`, and `Evidence`. Projects v2 mutations are performed by reviewed, authenticated GitHub CLI/GraphQL automation with Project write permission; the issues, PRs, and this ledger remain the stable board-ready inputs. A board mutation is authoritative only when the fleet evidence records and live-verifies the exact Project item; no mutation is inferred from a prompt, issue body, or documentation link alone.
 
 ## Credential and media boundary
 

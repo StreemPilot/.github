@@ -45,7 +45,7 @@ Use these organization-wide fields for the release train and Rust program:
 - **Blocked by:** issue, credential class, capacity lane, or repository prerequisite.
 - **Evidence:** exact head SHA, workflow run, artifact digest, and merge commit.
 
-Keep `StreemPilot/.github#1`, `StreemPilot/.github#2`, the media-router repository follow-up PR, DEN-2328, and the merged evidence PR linked to [StreemPilot Project 1](https://github.com/orgs/StreemPilot/projects/1). The current connector does not expose Projects v2 item mutation, so the durable issues and this ledger remain the board-ready source until a Projects-capable GitHub App or authenticated `gh project` runner performs the item updates.
+Keep `StreemPilot/.github#1`, `StreemPilot/.github#2`, the media-router repository follow-up PR, DEN-2328, and the merged evidence PR linked to [StreemPilot Project 1](https://github.com/orgs/StreemPilot/projects/1), together with linked implementation issues, current as stable board inputs. Projects v2 write access is now available through the reviewed, rate-aware GitHub CLI/GraphQL reconciler, superseding the earlier connector limitation; the durable issues and this ledger remain the board-ready source of record. A Project mutation is claimed only when the fleet evidence records and live-verifies the exact organization, Project, and item; chat history is never the evidence source.
 
 ### Credential and media boundary
 
