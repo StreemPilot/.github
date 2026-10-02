@@ -61,12 +61,11 @@ Keep these durable inputs linked to [StreemPilot Project 1](https://github.com/o
 - the media-router follow-up PR;
 - DEN-2328 and the merged evidence PR.
 
-Use fields `Workstream`, `Repository`, `Linear ID`, `Status`, `Priority`, `Release gate`, `Blocked by`, and `Evidence`. The current connector does not expose Projects v2 item mutation; the issues, PRs, and this ledger are the stable board-ready inputs for a Projects-capable GitHub App or authenticated `gh project` runner.
+Use fields `Workstream`, `Repository`, `Linear ID`, `Status`, `Priority`, `Release gate`, `Blocked by`, and `Evidence`. Projects v2 mutations are performed by reviewed, authenticated GitHub CLI/GraphQL automation with Project write permission; the issues, PRs, and this ledger remain the stable board-ready inputs. A board mutation is authoritative only when the fleet evidence records and live-verifies the exact Project item; no mutation is inferred from a prompt, issue body, or documentation link alone.
 
 ## Credential and media boundary
 
 The protected GitHub App path failed before mutation because no repository-admin App ID/private-key pair was present. The successful publication therefore used an exceptional one-time RSA-OAEP handoff bound to one Actions run and issue. Exactly one ciphertext was accepted; the decrypted PAT was immediately masked, held only in a mode-0600 runner-temporary file, and destroyed with the keypair and payload in unconditional cleanup. No plaintext credential, stream key, provider token, raw media, SDP, ICE, or private media URL entered source, workflow configuration, artifacts, issue text, PR text, logs, or Linear. Permanent organization administration should use reviewed least-privilege GitHub App installation tokens. Any PAT pasted into chat must be revoked or rotated.
-Projects v2 mutations are performed by reviewed, authenticated GitHub CLI/GraphQL automation with Project write permission. The issues and PR above remain stable board inputs. A board mutation is authoritative only when the fleet evidence records and live-verifies the exact Project item; no mutation is inferred from a prompt, issue body, or documentation link alone.
 
 ## Merge and evidence requirements
 
