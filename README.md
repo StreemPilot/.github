@@ -1,5 +1,7 @@
 # StreemPilot organization defaults
 
+**Scripting:** [No new Python scripts; use Rust](CONTRIBUTING.md#rust-first-scripts-and-automation). Document narrowly justified Python application exceptions.
+
 This public `.github` repository contains organization-wide community health files, contributor guidance, shared agent policy, repository boundaries, the StreamYard-parity roadmap, and GitHub/Linear project synchronization guidance.
 
 Repository-local policy wins when it is stricter or more specific. Existing project history must be preserved during consolidation and conflict resolution.
